@@ -19,7 +19,7 @@ import Loader from "@/components/Loader/Loader";
 const NotesClient = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const handleSearch = useDebouncedCallback(setSearchQuery, 300);
+    const handleChange = useDebouncedCallback(setSearchQuery, 300);
 
     const { data, isLoading, isSuccess, isError } = useQuery({
         queryKey: ['notes', searchQuery, currentPage],
@@ -37,9 +37,10 @@ const NotesClient = () => {
         }
     }, [isSuccess, data])
 
-    useEffect(() => {
+    const handleSearch = (query: string) => {
         setCurrentPage(1);
-    }, [searchQuery])
+        handleChange(query);
+    }
 
     return (
         <div className={css.app}>

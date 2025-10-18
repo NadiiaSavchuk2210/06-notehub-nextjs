@@ -80,8 +80,8 @@ export default function NoteForm({ onClose }: NoteFormProps) {
                                 rows={8}
                                 className={css.textarea}
                             />
+                            <ErrorMessage name="content" className={css.error} component="span" />
                         </fieldset>
-                        <ErrorMessage name="content" className={css.error} component="span" />
                         <fieldset className={css.formGroup}>
                             <label htmlFor={`${fieldId}-tag`}>Tag</label>
                             <Field as="select" id={`${fieldId}-tag`} name="tag" className={css.select}>

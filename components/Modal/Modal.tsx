@@ -33,6 +33,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
     }, [onClose])
 
     return createPortal(
+        isOpen &&
         <div
             className={css.backdrop}
             role="dialog"
