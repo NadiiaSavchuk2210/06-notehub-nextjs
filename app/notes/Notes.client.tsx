@@ -1,7 +1,7 @@
 "use client";
 
 import { fetchNotes } from "@/lib/api";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import css from './page.module.css';
@@ -24,6 +24,8 @@ const NotesClient = () => {
     const { data, isLoading, isSuccess, isError } = useQuery({
         queryKey: ['notes', searchQuery, currentPage],
         queryFn: () => fetchNotes(searchQuery, currentPage),
+        placeholderData: keepPreviousData,
+        staleTime: 1000 * 60 * 5,
         refetchOnMount: false,
     })
 
